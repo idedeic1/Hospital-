@@ -2,11 +2,47 @@ package ba.unsa.etf.rpr;
 
 import java.util.Date;
 
-public class Doktor extends Osoba {
+public class Doktor  {
+    private int id;
+    private String ime;
+    private String prezime;
     private String specijalizacija;
 
-    public Doktor(String ime, String prezime, Date datumRodjenja, String adresa, String specijalizacija) {
-        super(ime, prezime, datumRodjenja, adresa);
+    public Doktor(int id, String ime, String prezime, String specijalizacija) {
+        this.id = id;
+        this.ime = ime;
+        this.prezime = prezime;
+        this.specijalizacija = specijalizacija;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    public String getIme() {
+        return ime;
+    }
+
+    public void setIme(String ime) {
+        this.ime = ime;
+    }
+
+    public String getPrezime() {
+        return prezime;
+    }
+
+    public void setPrezime(String prezime) {
+        this.prezime = prezime;
+    }
+
+    public String getSpecijalizacija() {
+        return specijalizacija;
+    }
+
+    public void setSpecijalizacija(String specijalizacija) {
         this.specijalizacija = specijalizacija;
     }
 }

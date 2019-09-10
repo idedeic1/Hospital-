@@ -1,12 +1,22 @@
 package ba.unsa.etf.rpr;
 
 public class Bolest {
+    private int id;
     private String nazivBolesti;
     private String simptomiBolesti;
 
-    public Bolest(String nazivBolesti, String simptomiBolesti) {
+    public Bolest(int id, String nazivBolesti, String simptomiBolesti) {
+        this.id = id;
         this.nazivBolesti = nazivBolesti;
         this.simptomiBolesti = simptomiBolesti;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNazivBolesti() {
