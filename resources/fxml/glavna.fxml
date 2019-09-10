@@ -17,11 +17,11 @@
             <items>
                 <Region styleClass="spacer" />
                 <HBox styleClass="segmented-button-bar">
-                    <Button text="File" styleClass="first" />
-                    <Button text="Administrator" />
-                    <Button text="Search" />
-                    <Button text="Line" />
-                    <Button text="Process" styleClass="last" />
+                    <Button text="Pacijenti" styleClass="first" />
+                    <Button text="Novi pregled" />
+                    <Button text="Doktori i sestre" />
+                    <Button text="O nama" styleClass="last"/>
+
                 </HBox>
             </items>
         </ToolBar>
@@ -39,8 +39,6 @@
    <right>
       <VBox prefHeight="200.0" prefWidth="200.0" spacing="5.0" BorderPane.alignment="CENTER"  >
          <children>
-            <Button fx:id="btnDodajPacijenta" mnemonicParsing="false" prefWidth="Infinity"  text="Dodaj pacijenta" />
-            <Button fx:id="btnDodajBolest" mnemonicParsing="false" prefWidth="Infinity" text="Dodaj bolest" />
             <Button fx:id="btnIzmijeniPacijenta" mnemonicParsing="false" prefWidth="Infinity"  text="Izmijeni pacijenta" />
             <Button fx:id="btnObrisiPacijenta" mnemonicParsing="false" prefWidth="Infinity"  text="Obriši pacijenta" />
          </children>

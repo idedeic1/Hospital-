@@ -4,23 +4,31 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Pacijent extends Osoba {
-    private ArrayList<Bolest> bolesti = new ArrayList<>();
+    private Bolest bolest;
+    private Lijek lijek;
     private ArrayList<Pregled> pregledi = new ArrayList<>();
-    private ArrayList<Lijek> lijekovi = new ArrayList<>();
 
-    public Pacijent(String ime, String prezime, Date datumRodjenja, String adresa, ArrayList<Bolest> bolesti, ArrayList<Pregled> pregledi, ArrayList<Lijek> lijekovi) {
+    public Pacijent(String ime, String prezime, Date datumRodjenja, String adresa, Bolest bolest, Lijek lijek, ArrayList<Pregled> pregledi) {
         super(ime, prezime, datumRodjenja, adresa);
-        this.bolesti = bolesti;
+        this.bolest = bolest;
+        this.lijek = lijek;
         this.pregledi = pregledi;
-        this.lijekovi = lijekovi;
     }
 
-    public ArrayList<Bolest> getBolesti() {
-        return bolesti;
+    public Bolest getBolest() {
+        return bolest;
     }
 
-    public void setBolesti(ArrayList<Bolest> bolesti) {
-        this.bolesti = bolesti;
+    public void setBolest(Bolest bolest) {
+        this.bolest = bolest;
+    }
+
+    public Lijek getLijek() {
+        return lijek;
+    }
+
+    public void setLijek(Lijek lijek) {
+        this.lijek = lijek;
     }
 
     public ArrayList<Pregled> getPregledi() {
@@ -31,11 +39,5 @@ public class Pacijent extends Osoba {
         this.pregledi = pregledi;
     }
 
-    public ArrayList<Lijek> getLijekovi() {
-        return lijekovi;
-    }
 
-    public void setLijekovi(ArrayList<Lijek> lijekovi) {
-        this.lijekovi = lijekovi;
-    }
 }
