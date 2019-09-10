@@ -15,7 +15,7 @@ public class OrdinacijaDAO {
     private PreparedStatement dajPacijentaUpit, dajDoktoraUpit, dajMedicinskuSestruUpit, dajLijekUpit, dajBolestUpit, dajPregledUpit, dajPacijenteUpit, dajPregledeUpit,
                                dajLijekoveUpit, dajBolestiUpit, dajDoktoreUpit, dajSestreUpit, obrisiPacijentaUpit, obrisiDoktoraUpit, obrisiMedicinskuSestruUpit,
                               obrisiLijekUpit, obrisiBolestUpit, obrisiPregledUpit, dodajPacijentaUpit, dodajDoktoraUpit, dodajMedicinskuSestruUpit, dodajLijekUpit, dodajBolestUpit,
-                              dodajPregledUpit, promijeniPacijentaUpit, odrediIDPacijentaUpit, odrediIDPregledaUpit, odrediIDLijekaUpit, odrediIDBolestiUpit;
+                              dodajPregledUpit, promijeniPacijentaUpit, odrediIDPacijentaUpit, odrediIDPregledaUpit, odrediIDLijekaUpit, odrediIDBolestiUpit, promijeniPregledUpit;
 
 
 
@@ -26,6 +26,7 @@ public class OrdinacijaDAO {
     private OrdinacijaDAO() {
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:baza.db");
+            regenerisiBazu();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -63,7 +64,8 @@ public class OrdinacijaDAO {
             odrediIDLijekaUpit = conn.prepareStatement("SELECT MAX(id)+1 FROM lijek");
             odrediIDBolestiUpit = conn.prepareStatement("SELECT MAX(id)+1 FROM bolest");
 
-            promijeniPacijentaUpit = conn.prepareStatement("UPDATE pacijent SET ime=?, prezime=?, datumRodjenja=? bolest=?, lijek=? WHERE id=?");
+            promijeniPacijentaUpit = conn.prepareStatement("UPDATE pacijent SET ime=?, prezime=?, bolest=?, lijek=? WHERE id=?");
+            promijeniPregledUpit = conn.prepareStatement("UPDATE pregled SET doktor=?, medicinskaSestra=?, pacijent=?, cijena=?, dijagnoza=?, opisPregleda=? WHERE id=?");
 
             dajPacijenteUpit = conn.prepareStatement("SELECT * FROM  pacijent ORDER BY id");
             dajPregledeUpit = conn.prepareStatement("SELECT * FROM  pregled ORDER BY id");
@@ -77,6 +79,8 @@ public class OrdinacijaDAO {
         }
 
     }
+
+
 
     private Lijek dajLijek(int id) {
         try {
@@ -191,7 +195,7 @@ public class OrdinacijaDAO {
             e.printStackTrace();
         }
     }
-    public void ObrisiPregled(Pregled pregled ) {
+    public void obrisiPregled(Pregled pregled ) {
         try {
             obrisiPregledUpit.setInt(1, pregled.getId());
             obrisiPregledUpit.executeUpdate();
@@ -245,9 +249,8 @@ public class OrdinacijaDAO {
             dodajPacijentaUpit.setInt(1, id);
             dodajPacijentaUpit.setString(2, pacijent.getIme());
             dodajPacijentaUpit.setString(3, pacijent.getPrezime());
-            dodajPacijentaUpit.setDate(4, dajDatumFino(pacijent.getDatumRodjenja()));
-            dodajPacijentaUpit.setInt(5, pacijent.getBolest().getId());
-            dodajPacijentaUpit.setInt(6, pacijent.getLijek().getId());
+            dodajPacijentaUpit.setInt(4, pacijent.getBolest().getId());
+            dodajPacijentaUpit.setInt(5, pacijent.getLijek().getId());
             dodajPacijentaUpit.executeUpdate();
 
         } catch (SQLException e) {
@@ -268,7 +271,7 @@ public class OrdinacijaDAO {
             dodajPregledUpit.setInt(4, pregled.getPacijent().getId());
             dodajPregledUpit.setInt(5, pregled.getCijena());
             dodajPregledUpit.setInt(6, pregled.getDijagnoza().getId());
-            dodajPregledUpit.setString(6, pregled.getOpisPregleda());
+            dodajPregledUpit.setString(7, pregled.getOpisPregleda());
             dodajPregledUpit.executeUpdate();
 
         } catch (SQLException e) {
@@ -361,11 +364,25 @@ public class OrdinacijaDAO {
         try {
             promijeniPacijentaUpit.setString(1, pacijent.getIme());
             promijeniPacijentaUpit.setString(2, pacijent.getPrezime());
-            promijeniPacijentaUpit.setDate(3, dajDatumFino(pacijent.getDatumRodjenja()));
-            promijeniPacijentaUpit.setInt(4, pacijent.getBolest().getId());
-            promijeniPacijentaUpit.setInt(5, pacijent.getLijek().getId());
-            promijeniPacijentaUpit.setInt(6, pacijent.getId());
+            promijeniPacijentaUpit.setInt(3, pacijent.getBolest().getId());
+            promijeniPacijentaUpit.setInt(4, pacijent.getLijek().getId());
+            promijeniPacijentaUpit.setInt(5, pacijent.getId());
             promijeniPacijentaUpit.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void izmijeniPregled(Pregled pregled) {
+        try {
+            promijeniPregledUpit.setInt(1, pregled.getDoktor().getId());
+            promijeniPregledUpit.setInt(2, pregled.getSestra().getId());
+            promijeniPregledUpit.setInt(3, pregled.getPacijent().getId());
+            promijeniPregledUpit.setInt(4, pregled.getCijena());
+            promijeniPregledUpit.setInt(5, pregled.getDijagnoza().getId());
+            promijeniPregledUpit.setString(6, pregled.getOpisPregleda());
+            promijeniPregledUpit.setInt(7, pregled.getId());
+            promijeniPregledUpit.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -394,23 +411,14 @@ public class OrdinacijaDAO {
         return pregled;
     }
     private Pacijent dajPacijentaIzResultSeta(ResultSet rs) throws SQLException {
-        Pacijent pacijent = new Pacijent(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4) ,null , null);
+        Pacijent pacijent = new Pacijent(rs.getInt(1), rs.getString(2), rs.getString(3) ,null , null);
         pacijent.setBolest(dajBolest(rs.getInt(5)));
         pacijent.setLijek(dajLijek(rs.getInt(6)));
 
         return pacijent;
     }
 
-    private Date dajDatumFino(java.util.Date d){
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(d);
-        cal.set(Calendar.HOUR_OF_DAY, 0);
-        cal.set(Calendar.MINUTE, 0);
-        cal.set(Calendar.SECOND, 0);
-        cal.set(Calendar.MILLISECOND, 0);
-        java.sql.Date sqlDate = new java.sql.Date(cal.getTime().getTime());
-        return sqlDate;
-    }
+
     private void regenerisiBazu() {
         Scanner ulaz = null;
         try {

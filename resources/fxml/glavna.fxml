@@ -17,7 +17,7 @@
             <items>
                 <Region styleClass="spacer" />
                 <HBox styleClass="segmented-button-bar">
-                    <Button text="Pacijenti" styleClass="first" />
+                    <Button text="Pacijenti" styleClass="first" onAction="#actionPrikaziPacijente"/>
                     <Button text="Doktori i sestre" />
                     <Button text="O nama" styleClass="last"/>
 
@@ -26,14 +26,14 @@
         </ToolBar>
     </top>
    <center>
-      <TableView fx:id="tableViewPregled" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tableViewPregled" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" >
         <columns>
           <TableColumn fx:id="colPregledID" prefWidth="50.0" text="ID" />
-          <TableColumn fx:id="colPregledDoktor" prefWidth="125.0" text="Doktor" />
+          <TableColumn fx:id="colPregledDoktor" prefWidth="125.0" text="Doktor"  />
           <TableColumn fx:id="colPregledSestra" prefWidth="125.0" text="Sestra" />
           <TableColumn fx:id="colPregledPacijent" prefWidth="125.0" text="Pacijent" />
           <TableColumn fx:id="colPregledCijena" prefWidth="50.0" text="Cijena" />
-          <TableColumn fx:id="colPregledDijagnoza" prefWidth="75.0" text="Lijek" />
+          <TableColumn fx:id="colPregledDijagnoza" prefWidth="75.0" text="Bolest" />
           <TableColumn fx:id="colPregledOpis" prefWidth="150.0" text="Opis" />
         </columns>
       </TableView>
@@ -41,8 +41,8 @@
    <right>
       <VBox prefHeight="200.0" prefWidth="200.0" spacing="5.0" BorderPane.alignment="CENTER"  >
          <children>
-            <Button fx:id="btnIzmijeniPacijenta" mnemonicParsing="false" prefWidth="Infinity"  text="Izmijeni pregled" />
-            <Button fx:id="btnObrisiPacijenta" mnemonicParsing="false" prefWidth="Infinity"  text="Obriši pregled" />
+            <Button fx:id="btnIzmijeniPregled" mnemonicParsing="false" prefWidth="Infinity"  text="Izmijeni pregled" onAction="#actionIzmijeniPregled"/>
+            <Button fx:id="btnObrisiPregled" mnemonicParsing="false" prefWidth="Infinity"  text="Obriši pregled" onAction="#actionObrisiPregled"/>
             <Button fx:id="btnDodajPregled" mnemonicParsing="false" prefWidth="Infinity"  text="Dodaj pregled" onAction="#actionDodajPregled"/>
             <Button fx:id="btnExport" mnemonicParsing="false" prefWidth="Infinity"  text="Izvjestaj" />
          </children>

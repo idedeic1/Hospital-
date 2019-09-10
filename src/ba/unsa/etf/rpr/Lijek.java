@@ -11,6 +11,11 @@ public class Lijek {
         this.proizvodjacLijeka = proizvodjacLijeka;
     }
 
+    @Override
+    public String toString(){
+        return nazivLijeka;
+    }
+
     public int getId() {
         return id;
     }

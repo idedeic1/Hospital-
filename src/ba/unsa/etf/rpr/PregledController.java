@@ -26,7 +26,7 @@ public class PregledController {
 
     private Pregled pregled;
 
-    public PregledController(Pregled grad, ArrayList<Doktor> doktori, ArrayList<MedicinskaSestra> sestre, ArrayList<Pacijent> pacijenti, ArrayList<Bolest> bolesti) {
+    public PregledController(Pregled pregled, ArrayList<Doktor> doktori, ArrayList<MedicinskaSestra> sestre, ArrayList<Pacijent> pacijenti, ArrayList<Bolest> bolesti) {
         this.pregled = pregled;
         listDoktori = FXCollections.observableArrayList(doktori);
         listSestre = FXCollections.observableArrayList(sestre);
@@ -43,6 +43,10 @@ public class PregledController {
         if (pregled != null) {
             fieldCijena.setText(Integer.toString(pregled.getCijena()));
             fieldOpis.setText(pregled.getOpisPregleda());
+            choiceDoktor.setValue(pregled.getDoktor());
+            choiceSestra.setValue(pregled.getSestra());
+            choicePacijent.setValue(pregled.getPacijent());
+            choiceBolest.setValue(pregled.getDijagnoza());
 
         } else {
             choiceDoktor.getSelectionModel().selectFirst();
@@ -51,6 +55,7 @@ public class PregledController {
             choiceBolest.getSelectionModel().selectFirst();
         }
     }
+
     public Pregled getPregled() {
         return pregled;
     }
@@ -82,6 +87,7 @@ public class PregledController {
         if (!sveOk) return;
 
         if (pregled == null) pregled = new Pregled();
+
         pregled.setDoktor(choiceDoktor.getValue());
         pregled.setSestra(choiceSestra.getValue());
         pregled.setPacijent(choicePacijent.getValue());

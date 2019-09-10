@@ -13,6 +13,11 @@ public class MedicinskaSestra  {
         this.prezime = prezime;
     }
 
+    @Override
+    public String toString(){
+        return prezime + " " + ime;
+    }
+
     public int getId() {
         return id;
     }

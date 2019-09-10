@@ -11,6 +11,11 @@ public class Bolest {
         this.simptomiBolesti = simptomiBolesti;
     }
 
+    @Override
+    public String toString(){
+        return nazivBolesti;
+    }
+
     public int getId() {
         return id;
     }

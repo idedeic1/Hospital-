@@ -38,7 +38,7 @@
       <TextField fx:id="fieldCijena" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <Label text="Bolest:" GridPane.rowIndex="5"/>
       <ChoiceBox fx:id="choiceBolest" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
-      <Label text="Dodatni opis:" GridPane.rowIndex="4" />
+      <Label text="Dodatni opis:" GridPane.rowIndex="6" />
       <TextField fx:id="fieldOpis" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
       <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="7">

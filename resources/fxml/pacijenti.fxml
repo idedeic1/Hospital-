@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.HBox?>
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" >
+
+    <center>
+        <TableView fx:id="tableViewPacijenti" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" >
+            <columns>
+                <TableColumn fx:id="colPacijentID" prefWidth="25.0" text="ID" />
+                <TableColumn fx:id="colPacijentIme" prefWidth="75.0" text="Ime"  />
+                <TableColumn fx:id="colPacijentPrezime" prefWidth="75.0" text="Prezime"  />
+                <TableColumn fx:id="colPacijentBolest" prefWidth="100.0" text="Bolest" />
+                <TableColumn fx:id="colPacijentLijek" prefWidth="100.0" text="Lijek" />
+            </columns>
+        </TableView>
+    </center>
+    <right>
+        <VBox prefHeight="200.0" prefWidth="200.0" spacing="5.0" BorderPane.alignment="CENTER"  >
+            <children>
+                <Button fx:id="btnIzmijeniPacijenta" mnemonicParsing="false" prefWidth="Infinity"  text="Izmijeni pacijenta" onAction="#actionIzmijeniPacijenta"/>
+                <Button fx:id="btnObrisiPacijenta" mnemonicParsing="false" prefWidth="Infinity"  text="Obriši pacijenta" onAction="#actionObrisiPacijenta" />
+                <Button fx:id="btnDodajPacijenta" mnemonicParsing="false" prefWidth="Infinity"  text="Dodaj pacijenta" onAction="#actionDodajPacijenta"/>
+                <Button fx:id="btnNatrag" mnemonicParsing="false" prefWidth="Infinity"  text="Natrag" onAction="#actionNatrag" />
+
+            </children>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+        </VBox>
+    </right>
+</BorderPane>

@@ -7,17 +7,23 @@ public class Pacijent {
     private int id;
     private String ime;
     private String prezime;
-    private Date datumRodjenja;
     private Bolest bolest;
     private Lijek lijek;
 
-    public Pacijent(int id, String ime, String prezime, Date datumRodjenja, Bolest bolest, Lijek lijek) {
+    public Pacijent(){}
+
+    public Pacijent(int id, String ime, String prezime, Bolest bolest, Lijek lijek) {
         this.id = id;
         this.ime = ime;
         this.prezime = prezime;
-        this.datumRodjenja = datumRodjenja;
+
         this.bolest = bolest;
         this.lijek = lijek;
+    }
+
+    @Override
+    public String toString(){
+        return  prezime + " " + ime;
     }
 
     public int getId() {
@@ -44,13 +50,7 @@ public class Pacijent {
         this.prezime = prezime;
     }
 
-    public Date getDatumRodjenja() {
-        return datumRodjenja;
-    }
 
-    public void setDatumRodjenja(Date datumRodjenja) {
-        this.datumRodjenja = datumRodjenja;
-    }
 
 
     public Bolest getBolest() {

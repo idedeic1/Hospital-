@@ -15,6 +15,11 @@ public class Doktor  {
         this.specijalizacija = specijalizacija;
     }
 
+    @Override
+    public String toString(){
+        return "dr. " + prezime + " " + ime;
+    }
+
     public int getId() {
         return id;
     }
