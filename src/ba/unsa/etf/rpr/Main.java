@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -17,8 +18,10 @@ public class Main extends Application {
         GlavnaController ctrl = new GlavnaController();
         loader.setController(ctrl);
         Parent root = loader.load();
-        primaryStage.setTitle("Gradovi svijeta");
-        primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.setTitle("Ordinacija");
+        Scene scene = new Scene(root,900,700);
+        //scene.getStylesheets().add("resources/css/stilGlavne.css");
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
